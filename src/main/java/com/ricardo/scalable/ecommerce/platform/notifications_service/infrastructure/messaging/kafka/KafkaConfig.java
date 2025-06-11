@@ -24,7 +24,7 @@ public class KafkaConfig {
     ConsumerFactory<String, Object> consumerFactory() {
         JsonDeserializer<Object> deserializer = new JsonDeserializer<>();
         deserializer.setRemoveTypeHeaders(false);
-        deserializer.addTrustedPackages("*"); // mejor especificar paquetes por seguridad
+        deserializer.addTrustedPackages("*"); // messages can come from any package, it's better to specify packages for securityd
         deserializer.setUseTypeMapperForKey(true);
 
         return new DefaultKafkaConsumerFactory<String, Object>(
