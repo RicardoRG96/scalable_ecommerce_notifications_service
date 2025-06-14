@@ -1,6 +1,5 @@
 package com.ricardo.scalable.ecommerce.platform.notifications_service.infrastructure.messaging.kafka.consumer;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +21,14 @@ public class KafkaUserRegisteredConsumer {
         this.eventListener = eventListener;
     }
 
-    @KafkaListener(topics = "user-registered", groupId = "notifications-group", containerFactory = "kafkaListenerContainerFactory")
-    public void consume(ConsumerRecord<String, Object> record) {
-        if (record.value() instanceof UserRegisteredEvent event) {
-            eventListener.onEvent(event);
-        } else {
-            logger.info("Evento inesperado: {}", record.value());
-        }
+    @KafkaListener(
+        topics = "user-registered", 
+        groupId = "user-registered-group", 
+        containerFactory = "userRegisteredKafkaListenerContainerFactory"
+    )
+    public void consume(UserRegisteredEvent event) {
+        eventListener.onEvent(event);
+        logger.info("User username: {}", event.getName());
     }
 
 }
