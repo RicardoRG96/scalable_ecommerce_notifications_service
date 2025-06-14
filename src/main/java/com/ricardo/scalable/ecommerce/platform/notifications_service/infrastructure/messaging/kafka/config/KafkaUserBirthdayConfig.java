@@ -13,20 +13,20 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-import com.ricardo.scalable.ecommerce.platform.libs_common.events.UserRegisteredEvent;
+import com.ricardo.scalable.ecommerce.platform.libs_common.events.UserBirthdayEvent;
 
 @Configuration
-public class KafkaUserRegisteredConfig {
+public class KafkaUserBirthdayConfig {
 
     private final KafkaProperties kafkaProperties;
 
-    public KafkaUserRegisteredConfig(KafkaProperties kafkaProperties) {
+    public KafkaUserBirthdayConfig(KafkaProperties kafkaProperties) {
         this.kafkaProperties = kafkaProperties;
     }
 
     @Bean
-    ConsumerFactory<String, UserRegisteredEvent> userRegisteredConsumerFactory() {
-        JsonDeserializer<UserRegisteredEvent> deserializer = new JsonDeserializer<>(UserRegisteredEvent.class);
+    ConsumerFactory<String, UserBirthdayEvent> userBirthdayConsumerFactory() {
+        JsonDeserializer<UserBirthdayEvent> deserializer = new JsonDeserializer<>(UserBirthdayEvent.class);
         deserializer.addTrustedPackages("*");
 
         Map<String, Object> props = new HashMap<>(kafkaProperties.buildConsumerProperties());
@@ -37,10 +37,10 @@ public class KafkaUserRegisteredConfig {
     }
 
     @Bean
-    ConcurrentKafkaListenerContainerFactory<String, UserRegisteredEvent> userRegisteredKafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, UserRegisteredEvent> factory =
+    ConcurrentKafkaListenerContainerFactory<String, UserBirthdayEvent> userBirthdayKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, UserBirthdayEvent> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(userRegisteredConsumerFactory());
+        factory.setConsumerFactory(userBirthdayConsumerFactory());
         return factory;
     }
 
