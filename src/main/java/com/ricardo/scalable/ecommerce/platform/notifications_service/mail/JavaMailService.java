@@ -23,7 +23,7 @@ public class JavaMailService implements MailService {
         message.setTo(request.getTo());
         message.setSubject(request.getSubject());
         message.setText(request.getBody());
-        message.setFrom("ricardoretamal10@gmail.com");
+        message.setFrom("scalable.ecommerce.app@gmail.com");
 
         mailSender.send(message);
     }
