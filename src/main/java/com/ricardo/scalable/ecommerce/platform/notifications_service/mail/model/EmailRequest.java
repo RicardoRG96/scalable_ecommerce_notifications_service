@@ -1,20 +1,22 @@
-package com.ricardo.scalable.ecommerce.platform.notifications_service.mail.dto;
+package com.ricardo.scalable.ecommerce.platform.notifications_service.mail.model;
+
+import java.util.Map;
 
 public class EmailRequest {
 
     private String to;
 
-    private String subject;
+    private EmailTemplateType templateType;
 
-    private String body;
+    private Map<String, Object> templateVariables;
 
     public EmailRequest() {
     }
 
-    public EmailRequest(String to, String subject, String body) {
+    public EmailRequest(String to, EmailTemplateType templateType, Map<String, Object> templateVariables) {
         this.to = to;
-        this.subject = subject;
-        this.body = body;
+        this.templateType = templateType;
+        this.templateVariables = templateVariables;
     }
 
     public String getTo() {
@@ -25,20 +27,20 @@ public class EmailRequest {
         this.to = to;
     }
 
-    public String getSubject() {
-        return subject;
+    public EmailTemplateType getTemplateType() {
+        return templateType;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setTemplateType(EmailTemplateType templateType) {
+        this.templateType = templateType;
     }
 
-    public String getBody() {
-        return body;
+    public Map<String, Object> getTemplateVariables() {
+        return templateVariables;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setTemplateVariables(Map<String, Object> templateVariables) {
+        this.templateVariables = templateVariables;
     }
 
 }
