@@ -1,6 +1,6 @@
 package com.ricardo.scalable.ecommerce.platform.notifications_service.mail;
 
-import com.ricardo.scalable.ecommerce.platform.notifications_service.mail.dto.EmailRequest;
+import com.ricardo.scalable.ecommerce.platform.notifications_service.mail.model.EmailRequest;
 
 public interface MailService {
 

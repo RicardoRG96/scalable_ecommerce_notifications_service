@@ -5,16 +5,16 @@ public enum EmailTemplateType {
     USER_REGISTERED("user-registration", "¡Bienvenido a nuestra tienda!"),
     USER_BIRTHDAY("user-birthday", "¡Feliz cumpleaños!");
 
-    private final String template;
+    private final String templateFileName;
     private final String subject;
 
-    EmailTemplateType(String template, String subject) {
-        this.template = template;
+    EmailTemplateType(String templateFileName, String subject) {
+        this.templateFileName = templateFileName;
         this.subject = subject;
     }
 
-    public String getTemplate() {
-        return template;
+    public String getTemplateFileName() {
+        return templateFileName;
     }
 
     public String getSubject() {
