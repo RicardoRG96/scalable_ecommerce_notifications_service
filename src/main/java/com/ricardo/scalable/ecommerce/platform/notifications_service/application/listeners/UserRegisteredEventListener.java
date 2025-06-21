@@ -5,6 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.ricardo.scalable.ecommerce.platform.libs_common.events.UserRegisteredEvent;
@@ -18,6 +19,9 @@ public class UserRegisteredEventListener implements EventListener<UserRegistered
 
     @Autowired
     private MailService mailService;
+    
+    @Value("${app.url}")
+    private String appUrl;
 
     private static final Logger logger = LoggerFactory.getLogger(UserRegisteredEventListener.class);
 
@@ -27,7 +31,11 @@ public class UserRegisteredEventListener implements EventListener<UserRegistered
         logger.info("User username: {}", event.getName());
 
         EmailRequest email = new EmailRequest();
-        Map<String, Object> variables = Map.of("name", event.getName());
+        Map<String, Object> variables = Map.of(
+            "name", event.getName(),
+            "url", appUrl,
+            "token", event.getToken()
+        );
 
         email.setTo(event.getEmail());
         email.setTemplateType(EmailTemplateType.USER_REGISTERED);
