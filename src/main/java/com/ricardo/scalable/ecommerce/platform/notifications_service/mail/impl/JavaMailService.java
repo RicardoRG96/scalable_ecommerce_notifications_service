@@ -2,6 +2,7 @@ package com.ricardo.scalable.ecommerce.platform.notifications_service.mail.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,10 @@ public class JavaMailService implements MailService {
             helper.setSubject(request.getTemplateType().getSubject());
             helper.setText(html, true);
             helper.setFrom(fromEmail);
+
+            ClassPathResource logo = new ClassPathResource("templates/images/spring-logo.png");
+
+            helper.addInline("logoImage", logo, "image/png");
 
             mailSender.send(message);
 
