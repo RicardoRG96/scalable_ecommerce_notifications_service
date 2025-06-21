@@ -2,8 +2,8 @@ package com.ricardo.scalable.ecommerce.platform.notifications_service.mail.model
 
 public enum EmailTemplateType {
 
-    USER_REGISTERED("user-registration", "¡Bienvenido a nuestra tienda!"),
-    USER_BIRTHDAY("user-birthday", "¡Feliz cumpleaños!");
+    USER_REGISTERED("user-registration.html", "¡Bienvenido a nuestra tienda!"),
+    USER_BIRTHDAY("user-birthday.html", "¡Feliz cumpleaños!");
 
     private final String templateFileName;
     private final String subject;

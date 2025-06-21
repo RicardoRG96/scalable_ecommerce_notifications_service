@@ -6,8 +6,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import com.ricardo.scalable.ecommerce.platform.notifications_service.mail.MailService;
 import com.ricardo.scalable.ecommerce.platform.notifications_service.mail.model.EmailRequest;
@@ -22,7 +22,7 @@ public class JavaMailService implements MailService {
     private JavaMailSender mailSender;
 
     @Autowired
-    private TemplateEngine templateEngine;
+    private SpringTemplateEngine templateEngine;
 
     @Value("${spring.mail.properties.mail.smtp.from}")
     private String fromEmail;
