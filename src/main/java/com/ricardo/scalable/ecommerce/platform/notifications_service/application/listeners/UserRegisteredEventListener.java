@@ -20,8 +20,8 @@ public class UserRegisteredEventListener implements EventListener<UserRegistered
     @Autowired
     private MailService mailService;
     
-    @Value("${app.url}")
-    private String appUrl;
+    @Value("${verification-token.url}")
+    private String verificationTokenUrl;
 
     private static final Logger logger = LoggerFactory.getLogger(UserRegisteredEventListener.class);
 
@@ -33,7 +33,7 @@ public class UserRegisteredEventListener implements EventListener<UserRegistered
         EmailRequest email = new EmailRequest();
         Map<String, Object> variables = Map.of(
             "name", event.getName(),
-            "url", appUrl,
+            "url", verificationTokenUrl,
             "token", event.getToken()
         );
 
